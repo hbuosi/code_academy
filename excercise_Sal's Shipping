@@ -1,0 +1,66 @@
+First off, we need to know how much it costs to ship a package of given weight by normal ground shipping.
+
+#function about the Ground weight and cost
+def weight_cost_ground(weight):
+  if weight <= 2:
+    price_per_pound = 1.50
+  elif weight <= 6:
+    price_per_pound = 3.00
+  elif weight <= 10:
+    price_per_pound = 4.00
+  else:
+    price_per_pound = 4.75
+ #The problem gave inside the table that: flat charge is $ 20 for Ground
+  return 20 + (price_per_pound * weight)
+
+#testing the function
+print(weight_cost_ground(8.4))
+
+#The problem gave me that: Premium Shipping is a flat value $ 125.00
+shipping_cost_premium = 125.00
+
+#function about the Drone weight and cost
+def weight_cost_drone(weight):
+  if weight <= 2:
+    price_per_pound = 4.50
+  elif weight <= 6:
+    price_per_pound = 9.00
+  elif weight <= 10:
+    price_per_pound = 12.00
+  else:
+    price_per_pound = 14.25
+
+#The problem gave inside the table that: flat charge is $ 20 for Drone
+  return price_per_pound * weight
+
+print(weight_cost_drone(1.5))
+
+# This function define how type of messagem the users will see
+def print_cheapest_shipping_method(weight):
+
+#variable create
+  ground = weight_cost_ground(weight)
+  premium = shipping_cost_premium
+  drone = weight_cost_drone(weight)
+
+#conditional statement
+  if ground < premium and ground < drone:
+    method = "standard ground"
+    cost = ground
+  elif premium < ground and premium < drone:
+    method = "premium ground"
+    cost = premium
+  else:
+    method = "drone"
+    cost = drone
+
+#message personalized using trick % () for call variable
+  print(
+    "The cheapest option available is $%.2f with %s shipping."
+    % (cost, method)
+  )
+
+#test function
+print_cheapest_shipping_method(4.8)
+print_cheapest_shipping_method(41.5)
+    
